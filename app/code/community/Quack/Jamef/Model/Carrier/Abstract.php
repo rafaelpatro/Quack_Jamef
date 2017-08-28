@@ -147,9 +147,9 @@ abstract class Quack_Jamef_Model_Carrier_Abstract extends Mage_Shipping_Model_Ca
     protected function _getFitHeight($item)
     {
         $product = $item->getProduct();
-        $height  = $this->_getProductAttribute($product, 'volume_altura');
+        $height  = $this->_getProductAttribute($product, $this->getConfigData('attribute_height'));
         $height  = ($height > 0) ? $height : self::HEIGHT;
-        $fitSize = (float) $this->_getProductAttribute($product, 'fit_size');
+        $fitSize = (float) $this->_getProductAttribute($product, $this->getConfigData('attribute_fitsize'));
     
         if ($item->getQty() > 1 && is_numeric($fitSize) && $fitSize > 0) {
             $totalSize = $height + ($fitSize * ($item->getQty() - 1));
@@ -169,10 +169,10 @@ abstract class Quack_Jamef_Model_Carrier_Abstract extends Mage_Shipping_Model_Ca
     protected function _setFitItem($item)
     {
         $product = $item->getProduct();
-        $height  = $this->_getProductAttribute($product, 'volume_altura');
-        $width   = $this->_getProductAttribute($product, 'volume_largura');
-        $length  = $this->_getProductAttribute($product, 'volume_comprimento');
-        $fitSize = $this->_getProductAttribute($product, 'fit_size');
+        $height  = $this->_getProductAttribute($product, $this->getConfigData('attribute_height'));
+        $width   = $this->_getProductAttribute($product, $this->getConfigData('attribute_width'));
+        $length  = $this->_getProductAttribute($product, $this->getConfigData('attribute_length'));
+        $fitSize = $this->_getProductAttribute($product, $this->getConfigData('attribute_fitsize'));
         $weight  = $product->getWeight();
         if (!(empty($fitSize) || empty($height) || empty($width) || empty($length))) {
             $itemKey = "{$height}_{$width}_{$length}_{$fitSize}_{$weight}";
@@ -293,14 +293,17 @@ abstract class Quack_Jamef_Model_Carrier_Abstract extends Mage_Shipping_Model_Ca
             if ($_product = $item->getProduct()) {
                 $_product->load($_product->getId());
     
-                $itemAltura = $this->_getProductAttribute($_product, 'volume_altura');
-                $itemLargura = $this->_getProductAttribute($_product, 'volume_largura');
-                $itemComprimento = $this->_getProductAttribute($_product, 'volume_comprimento');
+                $itemAltura = $this->_getProductAttribute($_product, $this->getConfigData('attribute_height'));
+                $itemLargura = $this->_getProductAttribute($_product, $this->getConfigData('attribute_width'));
+                $itemComprimento = $this->_getProductAttribute($_product, $this->getConfigData('attribute_length'));
     
                 $itemAltura = $this->_getFitHeight($item);
                 $volumeWeight += ($itemAltura * $itemLargura * $itemComprimento * $item->getTotalQty());
     
-                $this->_postingDays = max($this->_postingDays, (int) $this->_getProductAttribute($_product, 'posting_days'));
+                $this->_postingDays = max(
+                    $this->_postingDays,
+                    (int) $this->_getProductAttribute($_product, $this->getConfigData('attribute_postingdays'))
+                );
                 $this->_setFitItem($item);
             }
         }

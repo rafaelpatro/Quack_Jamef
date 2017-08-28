@@ -54,18 +54,6 @@
         			</quack_jamef>
         		</carriers>
         	</shipping>
-            <quote>
-                <item>
-                    <product_attributes>
-                        <volume_altura/>
-                        <volume_comprimento/>
-                        <volume_largura/>
-                        <postmethods/>
-                        <fit_size/>
-                        <posting_days/>
-                    </product_attributes>
-                </item>
-            </quote>
         </sales>
         <cache>
         	<types>
@@ -103,6 +91,11 @@
     			<posting_days_increment>1</posting_days_increment>
     			<posting_time>15:00</posting_time>
     			<timeout>8</timeout>
+    			<attribute_height>volume_altura</attribute_height>
+    			<attribute_width>volume_largura</attribute_width>
+    			<attribute_length>volume_comprimento</attribute_length>
+    			<attribute_fitsize>fit_size</attribute_fitsize>
+    			<attribute_postingdays>posting_days</attribute_postingdays>
     		</quack_jamef>
     	</carriers>
     </default>
