@@ -17,3 +17,13 @@ Desenvolvido a partir do manual de orientações técnicas, fornecido pela Jamef
 
 ## Compatibilidade
 Magento 1.4.x - 1.9.x
+
+## Configurações
+ - Certifique-se de configurar corretamente a _Origem da Entrega_ no Magento, como ilustrado a seguir.
+ - Conforme a tradução do Magento, alguns nomes, títulos e valores podem sofrer variações.
+
+### Sistema > Configurações > (Vendas) Configurações de Entrega
+![image](https://user-images.githubusercontent.com/13813964/35649416-25909194-06c0-11e8-9c62-9d95a88d2fe8.png)
+
+### Sistema > Configurações > (Vendas) Formas de Entrega
+![image](https://user-images.githubusercontent.com/13813964/35649192-6aab6d68-06bf-11e8-9362-da12de981180.png)
